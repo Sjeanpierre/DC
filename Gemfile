@@ -9,12 +9,15 @@ gem 'mysql2'
 gem 'thin'
 gem 'simple_form'
 gem 'github_api', '0.8.9'
-
+gem "RightScaleAPIHelper"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
+  gem 'bootstrap-sass', '~> 2.3.2.0'
+  gem 'chosen-rails'
+  gem 'bootstrap-sass', '~> 2.3.2.0'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

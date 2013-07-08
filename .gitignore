@@ -20,3 +20,5 @@ config/database.yml
 
 config/rightscale.yml
 config/github.yml
+
+config/database.yml

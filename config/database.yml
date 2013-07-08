@@ -16,7 +16,7 @@ development: &development
   <<: *db
   database: dc
   username: root
-  password: ''
+  password: '3784057'
 
 profile:
   <<: *development

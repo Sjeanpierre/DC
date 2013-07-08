@@ -1,0 +1,17 @@
+<script>
+	$(document).ready(function() {
+		$('.dualselect').bootstrapDualListbox({
+			preserveselectiononmove: 'moved',
+			selectorminimalheight:  400
+		});
+	} );
+</script>
+
+
+<div class="container">
+	<%= simple_form_for :deployment_profile, :url => "/#{@_request.filtered_parameters['rsaccount']}/deployment_profile/save", :html => {:class => 'form-horizontal' } do |f|  %>
+	  <%=	 f.input :inputs, :as => :select, :collection => @inputs, :group_method => :last, :label_method => :name, :value_method => :name, :label => 'Array inputs', :input_html => {:class => 'dualselect', :multiple => true, :style => 'width: 500px'} %>
+	  <%= f.input :array_id, :as => :hidden, :input_html => { value: @array.href.split('/').last } %>
+    <%= f.button :submit %>
+	<% end %>
+</div>

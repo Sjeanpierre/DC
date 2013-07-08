@@ -1,4 +1,8 @@
 DC::Application.routes.draw do
+  match '/:rsaccount/deployment_profile/new', :to => 'deployment_profile#new'
+  match "/:rsaccount/deployment_profile/create", :to => 'deployment_profile#create', :via => :post
+  match "/:rsaccount/deployment_profile/save", :to => 'deployment_profile#save', :via => :post
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

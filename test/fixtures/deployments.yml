@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  DeploymentProfile: 
+  deployment_guid: MyString
+  status: MyString
+
+two:
+  DeploymentProfile: 
+  deployment_guid: MyString
+  status: MyString

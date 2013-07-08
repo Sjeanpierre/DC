@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  profile_id: 1
+  rs_account: 1
+  rs_deployment: 1
+  rs_array: 1
+
+two:
+  profile_id: 1
+  rs_account: 1
+  rs_deployment: 1
+  rs_array: 1
