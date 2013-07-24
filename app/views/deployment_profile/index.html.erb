@@ -1,0 +1,56 @@
+<h1>deployment profiles</h1>
+
+<script>
+	$(document).ready(function() {
+		$('#dtable').dataTable({
+			"aoColumnDefs": [
+				{ "bSearchable": false, "aTargets": [ 3 ] }
+			],
+			"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+			"sPaginationType": "bootstrap",
+			"bRetrieve": true,
+			"oLanguage": {
+				"sLengthMenu": "_MENU_ profiles per page"
+			}
+		});
+
+	} );
+</script>
+
+<table class="table table-striped table-bordered table-hover" id='dtable'>
+  <thead>
+  <tr>
+    <th>Deployment Profile ID</th>
+    <th>Array Name</th>
+    <th>Rightscale Account</th>
+    <th>Rightscale Deployment ID</th>
+	  <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @deployment_profiles.each do  |deployment_profile| %>
+    <tr>
+      <td><%=	link_to deployment_profile.profile_id, "deployment_profile/#{deployment_profile.id}" %></td>
+      <td><%=	deployment_profile.rs_array_name %></td>
+      <td><%=	deployment_profile.rs_account %></td>
+      <td><%=	deployment_profile.rs_deployment %></td>
+	    <td>
+	      <div class="btn-group">
+
+	        <button class="btn btn-info">View Details</button>
+	        <button class="btn dropdown-toggle btn-info" data-toggle="dropdown">
+	          <span class="caret"></span>
+	        </button>
+	        <ul class="dropdown-menu">
+	          <li>Open</li>
+		        <li>Edit</li>
+	        </ul>
+	      </div>
+	    </td>
+    </tr>
+  <%	end %>
+  </tbody>
+</table>
+<div><ul>
+	<li><%=	 link_to "New Deployment profile", '44210/deployment_profile/new' %></li>
+</ul></div>

@@ -1,8 +1,3 @@
-class Array
-  def to_hashie
-    map {|array| Hashie::Mash.new(array)}
-  end
-end
 module RightscaleHelper
 
   RESOURCES = %w{deployment array}
@@ -68,13 +63,18 @@ module RightscaleHelper
       end
     end
 
-    def self.get_array_inputs(array_id,profile_id)
+    def self.get_array_inputs(array_id)
       array = self.find(:resource => 'array', :field => 'id', :value => array_id)
-      inputs = self.tag_array_instances(array, profile_id)
+      inputs = self.tag_array_instances(array)
       inputs.first.parameters
     end
 
-    def self.tag_array_instances(array, tag)
+    def self.update_array_inputs(array_id,input_hash)
+      self.handle_rightscale_response(@rs_client.put("/server_arrays/#{array_id}",input_hash))
+    end
+
+    def self.tag_array_instances(array)
+      tag = Time.now.to_i
       instance_hrefs = self.array_instances(array)
       handle_error("No running instances in array #{array.nickname}") if instance_hrefs.blank?
       tags = {
@@ -87,12 +87,16 @@ module RightscaleHelper
       return resource
     end
 
+    def self.launch_array_instances(array_id)
+      self.handle_rightscale_response(@rs_client.post("/server_arrays/#{array_id}/launch", {}),true)
+    end
+
     def self.retrieve_resource_with_tag(resource, tag)
       if RESOURCE_TYPES.include?(resource)
         tags = { :resource_type => resource,
                  :tags => [*tag]
         }
-        self.handle_rightscale_response(@rs_client.get("/tags/search", tags))
+        self.handle_rightscale_response(@rs_client.get('/tags/search', tags))
       end
     end
 
@@ -114,8 +118,9 @@ module RightscaleHelper
       grouped_arrays
     end
 
-    def self.handle_rightscale_response(response)
+    def self.handle_rightscale_response(response,return_header=nil)
       if GOOD_RESPONSE_CODES.include?(response.code)
+        return process_headers(response) if return_header
         return unless response.body.present?
         body = JSON.parse(response.body)
         if body.is_a?(Array)
@@ -126,6 +131,14 @@ module RightscaleHelper
       else
         self.handle_error("Rightscale returned error code #{response.code}")
       end
+    end
+
+    def self.process_headers(response)
+      headers = {}
+      response.each_header do |key,value|
+        headers[key] = value
+      end
+      headers
     end
 
     def self.handle_error(error)

@@ -1,0 +1,12 @@
+{
+"profile_id": "e482fb88ff5142612d721dee7bdf9017",
+"subdomain": "branch-name",
+"repos": {
+"merb-recaptcha": "branch-name",
+"mysageone_ca": "branch-name"
+},
+"inputs": {
+"APP_FUGU_THEME": "value",
+"REGISTER_DNS": "value"
+}
+}

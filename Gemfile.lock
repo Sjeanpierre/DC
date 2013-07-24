@@ -45,6 +45,14 @@ GEM
       execjs
     coffee-script-source (1.6.2)
     daemons (1.1.9)
+    delayed_job (3.0.4)
+      activesupport (~> 3.0)
+    delayed_job_active_record (0.3.3)
+      activerecord (>= 2.1.0, < 4)
+      delayed_job (~> 3.0)
+    dnsmadeeasy-api (1.0.0)
+      json
+      rest-client
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (1.4.0)
@@ -62,6 +70,8 @@ GEM
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
+    jquery-datatables-rails (1.11.2)
+      jquery-rails
     jquery-rails (3.0.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -110,6 +120,8 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -145,7 +157,10 @@ DEPENDENCIES
   bootstrap-sass (~> 2.3.2.0)
   chosen-rails
   coffee-rails (~> 3.2.1)
+  delayed_job_active_record
+  dnsmadeeasy-api (~> 1.0.0)
   github_api (= 0.8.9)
+  jquery-datatables-rails
   jquery-rails
   mysql2
   rails (= 3.2.13)

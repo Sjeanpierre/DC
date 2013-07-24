@@ -1,0 +1,12 @@
+{"request": {
+    "profile_id": "296e2ae929c108849f0c3c3881f25dac",
+    "subdomain": "subdomain2",
+    "repos": {
+        "merb-recaptcha": "bump_version",
+        "mysageone_ca": "copy_dev_keys"
+    },
+    "inputs": {
+        "APP_FUGU_THEME": "value",
+        "REGISTER_DNS": "value"
+    }
+}}

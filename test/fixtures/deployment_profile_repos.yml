@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  deployment_profile_id: MyString
+  repo_id: MyString
+
+two:
+  deployment_profile_id: MyString
+  repo_id: MyString

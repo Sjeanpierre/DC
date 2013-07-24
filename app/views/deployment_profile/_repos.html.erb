@@ -1,0 +1,6 @@
+<h3>Repos</h3>
+<ul>
+  <%  	 @deployment_profile.repos.each do |repo| %>
+    <li><%=	 "#{repo.repo_owner}/#{repo.repo_name}" %></li>
+  <%	 end %>
+</ul>

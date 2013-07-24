@@ -9,7 +9,9 @@ gem 'mysql2'
 gem 'thin'
 gem 'simple_form'
 gem 'github_api', '0.8.9'
-gem "RightScaleAPIHelper"
+gem 'RightScaleAPIHelper'
+gem 'delayed_job_active_record'
+gem 'dnsmadeeasy-api', '~> 1.0.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -18,6 +20,7 @@ group :assets do
   gem 'bootstrap-sass', '~> 2.3.2.0'
   gem 'chosen-rails'
   gem 'bootstrap-sass', '~> 2.3.2.0'
+  gem 'jquery-datatables-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

@@ -1,7 +1,12 @@
 DC::Application.routes.draw do
   match '/:rsaccount/deployment_profile/new', :to => 'deployment_profile#new'
-  match "/:rsaccount/deployment_profile/create", :to => 'deployment_profile#create', :via => :post
+  match "/:rsaccount/deployment_profile/select_inputs", :to => 'deployment_profile#select_inputs', :via => :post
+  match "/:rsaccount/deployment_profile/select_repos", :to => 'deployment_profile#select_repos'
   match "/:rsaccount/deployment_profile/save", :to => 'deployment_profile#save', :via => :post
+  match "deploy", :to => 'deployment#request_deployment', :via => :post
+  match "/deployment_profile", :to => 'deployment_profile#index'
+  match "/deployment_profile/:id", :to => 'deployment_profile#show'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

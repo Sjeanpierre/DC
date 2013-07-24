@@ -12,6 +12,8 @@
 	<%= simple_form_for :deployment_profile, :url => "/#{@_request.filtered_parameters['rsaccount']}/deployment_profile/save", :html => {:class => 'form-horizontal' } do |f|  %>
 	  <%=	 f.input :inputs, :as => :select, :collection => @inputs, :group_method => :last, :label_method => :name, :value_method => :name, :label => 'Array inputs', :input_html => {:class => 'dualselect', :multiple => true, :style => 'width: 500px'} %>
 	  <%= f.input :array_id, :as => :hidden, :input_html => { value: @array.href.split('/').last } %>
+    <%=	 f.input :repos, :as => :grouped_select, :collection => Repo.grouped_by_owner, :group_method => :last, :group_label_method => :first, :label => 'Github Repos', :input_html => {:class => 'chzn-select', :multiple => true, :style => 'width: 500px'} %>
+    <%=	 f.input :domain, :collection => DeploymentProfile.available_domains, :label => 'Domain', :input_html => {:class => 'chzn-select', :style => 'width: 500px'} %>
     <%= f.button :submit %>
 	<% end %>
 </div>
