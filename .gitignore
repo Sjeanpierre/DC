@@ -16,9 +16,12 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .idea
-config/database.yml
+/config/database.yml
 
-config/rightscale.yml
-config/github.yml
+/config/rightscale.yml
+/config/github.yml
 
-config/database.yml
+
+
+/config/dnsmadeeasy.yml
+
