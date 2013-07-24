@@ -3,21 +3,21 @@
 .sass-cache
 capybara-*.html
 .rspec
+.rvmrc
 /.bundle
 /vendor/bundle
 /log/*
 /tmp/*
 /db/*.sqlite3
-/config/database.yml
 /public/system/*
 /coverage/
 /spec/tmp/*
 **.orig
 rerun.txt
 pickle-email-*.html
-.idea
+.project
 /config/database.yml
-
+.idea
 /config/rightscale.yml
 /config/github.yml
 
