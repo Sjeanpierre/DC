@@ -14,6 +14,13 @@ gem 'delayed_job_active_record'
 gem 'dnsmadeeasy-api', '~> 1.0.0'
 # Gems used only for assets and not required
 # in production environments by default.
+gem "rspec-rails", :group => [:test, :development]
+group :test do
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec"
+end
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

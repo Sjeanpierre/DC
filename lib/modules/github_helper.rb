@@ -1,6 +1,9 @@
 module GithubHelper
   require 'hashie'
 
+  class GithubResult < Struct.new(:repo, :sha, :tag)
+  end
+
   def get_repos
     git_connection = establish_git_connection
     accessible_repos = []
@@ -42,7 +45,7 @@ module GithubHelper
         tag_details.push(process_tags([repo], branch_name, tag_name))
       end
     end
-    tag_details
+    tag_details.flatten
   end
 
   private
@@ -59,13 +62,13 @@ module GithubHelper
 
 
   def process_tags(repos, branch, tag_name=nil)
-    tag_results = {}
+    tag_results = []
     tag_name = tag_name || branch
     tag = next_available_tag(repos, tag_name)
     repos.each do |repo|
       git_connection = establish_git_connection
       branch_info = git_connection.repos.branch(repo.repo_owner, repo.repo_name, branch)
-      tag_results[repo.repo_name] = tag_github_repo(git_connection, repo, tag, branch_info.commit.sha)
+      tag_results.push(tag_github_repo(git_connection, repo, tag, branch_info.commit.sha))
     end
     tag_results
   end
@@ -92,7 +95,7 @@ module GithubHelper
     git_connection.git_data.references.create repo_owner, repo_name,
                                               'ref' => "refs/tags/#{tag}",
                                               'sha' => tag_sha
-    {:commit_sha => sha, :created_tag => tag}
+    GithubResult.new(repo.repo_name,sha,tag)
   end
 
   def next_available_tag(repos, branch)

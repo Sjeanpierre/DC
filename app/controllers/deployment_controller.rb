@@ -1,5 +1,6 @@
 class DeploymentController < ApplicationController
   include DeploymentHelper
+  protect_from_forgery :except => :request_deployment
 
   def request_deployment
     request = validate_request(params[:request])

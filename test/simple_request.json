@@ -1,0 +1,11 @@
+{"request": {
+    "profile_id": "46ea8eb6b53740d70b4a4f70c7ef8042",
+    "subdomain": "subdomain5",
+    "repos": {
+        "rs_mobile": "master"
+    },
+    "inputs": {
+        "APP_FUGU_THEME": "value",
+        "REGISTER_DNS": "value"
+    }
+}}

@@ -7,7 +7,7 @@ class DeploymentProfile < ActiveRecord::Base
   after_create :add_default_inputs
   include DnsmadeeasyHelper
 
-  DEFAULT_INPUTS = %w{DEPLOYMENT_ID}
+  DEFAULT_INPUTS = {:DEPLOYMENT_ID => :DEPLOY_ID, :APPLICATION_TAG => :APP_TAG}
 
   def self.create_from_array(array,inputs,repos,domain)
     new_profile = DeploymentProfile.new
@@ -33,8 +33,8 @@ class DeploymentProfile < ActiveRecord::Base
   end
 
   def add_default_inputs
-    DEFAULT_INPUTS.each do |input|
-      self.inputs.build(:human_name => input, :rs_name => "server_array[parameters][#{input}]" )
+    DEFAULT_INPUTS.each do |input_name,type|
+      self.inputs.build(:human_name => input_name.to_s, :rs_name => "server_array[parameters][#{input_name.to_s}]", :input_type => type )
     end
     self.save!
   end

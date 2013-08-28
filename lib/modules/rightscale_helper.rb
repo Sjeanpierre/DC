@@ -5,9 +5,11 @@ module RightscaleHelper
   DEPLOYMENT_PARAMS = %w{ tags nickname href}
   GOOD_RESPONSE_CODES = %w{204 201 200}
   RESOURCE_TYPES = %w{ec2_instance}
-
   require 'hashie'
   class Rightscale
+
+    class RsLaunchResult < Struct.new(:instance_href)
+    end
 
     def self.new(account_id)
       @rs_client = RightScaleAPIHelper::Helper.new(account_id, Base64.decode64(RS_CONFIG['username']), Base64.decode64(RS_CONFIG['password']), format="js", version="1.0")
@@ -88,7 +90,8 @@ module RightscaleHelper
     end
 
     def self.launch_array_instances(array_id)
-      self.handle_rightscale_response(@rs_client.post("/server_arrays/#{array_id}/launch", {}),true)
+      results = self.handle_rightscale_response(@rs_client.post("/server_arrays/#{array_id}/launch", {}),true)
+      RsLaunchResult.new(results[:instance_href])
     end
 
     def self.retrieve_resource_with_tag(resource, tag)
@@ -129,7 +132,7 @@ module RightscaleHelper
           Hashie::Mash.new(body)
         end
       else
-        self.handle_error("Rightscale returned error code #{response.code}")
+        self.handle_error("Rightscale returned error code #{response.code},#{response.inspect}")
       end
     end
 

@@ -1,9 +1,9 @@
 {"request": {
-    "profile_id": "296e2ae929c108849f0c3c3881f25dac",
+    "profile_id": "5db71c3834c71bb0d869cf213e609236",
     "subdomain": "subdomain2",
     "repos": {
-        "merb-recaptcha": "bump_version",
-        "mysageone_ca": "copy_dev_keys"
+        "rs_mobile": "master",
+        "Sencha_GS": "master"
     },
     "inputs": {
         "APP_FUGU_THEME": "value",

@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717211022) do
+ActiveRecord::Schema.define(:version => 20130727233635) do
+
+  create_table "audit_entries", :force => true do |t|
+    t.integer  "deployment_id"
+    t.string   "audit_type"
+    t.text     "details"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "audit_entries", ["deployment_id"], :name => "index_audit_entries_on_deployment_id"
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -72,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20130717211022) do
   create_table "inputs", :force => true do |t|
     t.string   "human_name"
     t.string   "rs_name"
-    t.string   "type"
+    t.string   "input_type"
     t.integer  "deployment_profile_id"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
