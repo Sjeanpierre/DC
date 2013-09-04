@@ -26,6 +26,12 @@ class Deployment < ActiveRecord::Base
     self.audit_entries.build(:audit_type => :update, :details => "status updated from #{self.status_change[0]} to #{self.status_change[1]}")
   end
 
+  def retrieve_audit_entries
+    audit_entries = self.audit_entries
+    #need to verify that the map returns items in the correct order
+    audit_entries.map {|ae| {:time => ae.created_at.to_formatted_s(:db), :event => ae.audit_type, :details => ae.details}}
+  end
+
   def handle_deployment_failure(error)
     self.audit_entries.build(:audit_type => :failure, :details => "deployment failed with the following error #{error.message}")
   end

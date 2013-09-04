@@ -8,4 +8,10 @@ class DeploymentController < ApplicationController
     deployment.process_deployment(request) #delay(:queue => 'process_deployment').process_deployment(request)
     render :text => {:guid => deployment.deployment_guid}.to_json, :status => 201
   end
+
+  def history
+    deployment = Deployment.find_by_deployment_guid(params[:deployment_guid])
+    audit_entries = deployment.retrieve_audit_entries
+    render :text => audit_entries.to_json
+  end
 end
