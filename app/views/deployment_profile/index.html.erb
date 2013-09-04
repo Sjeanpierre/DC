@@ -30,7 +30,7 @@
   <tbody>
   <% @deployment_profiles.each do  |deployment_profile| %>
     <tr>
-      <td><%=	link_to deployment_profile.profile_id, "deployment_profile/#{deployment_profile.id}" %></td>
+      <td><%=	link_to deployment_profile.profile_id, "deployment_profile/#{deployment_profile.profile_id}" %></td>
       <td><%=	deployment_profile.rs_array_name %></td>
       <td><%=	deployment_profile.rs_account %></td>
       <td><%=	deployment_profile.rs_deployment %></td>

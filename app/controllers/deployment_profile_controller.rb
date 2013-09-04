@@ -17,7 +17,7 @@ class DeploymentProfileController < ApplicationController
   end
 
   def show
-    @deployment_profile = DeploymentProfile.find(params[:id])
+    @deployment_profile = DeploymentProfile.find_by_profile_id(params[:profile_id])
   end
 
   def select_inputs
