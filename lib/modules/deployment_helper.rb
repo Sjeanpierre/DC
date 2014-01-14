@@ -145,5 +145,9 @@ module DeploymentHelper
     invalid_inputs.blank? ? true : raise("Invalid input #{invalid_inputs} was provided for deployment profile")
   end
 
+  def retrieve_deployment(deployment_guid)
+    Deployment.find_by_deployment_guid(deployment_guid) || raise('resource not found')
+  end
+
 
 end

@@ -7,6 +7,7 @@ DC::Application.routes.draw do
   match "/deployment_profile", :to => 'deployment_profile#index'
   match "/deployment_profile/:profile_id", :to => 'deployment_profile#show'
   match "/deployment/:deployment_guid/history", :to => 'deployment#history'
+  match "/deployment/:deployment_guid/status", :to => 'deployment#status'
 
 
   # The priority is based upon order of creation:
